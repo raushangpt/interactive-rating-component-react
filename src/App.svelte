@@ -2,14 +2,19 @@
   import Rating from './lib/Rating.svelte';
   import ThankYou from './lib/ThankYou.svelte';
 
-  let submit = false;
-  let rate = 0;
+  let submited = localStorage.getItem('submited') === 'true';
 </script>
 
-<div class="bg-very-dark-blue grid h-screen w-screen place-items-center">
-  {#if !submit}
-    <Rating bind:submit bind:rate />
+<div class="mx-auto grid h-screen w-screen max-w-[1440px] select-none place-items-center text-white">
+  {#if !submited}
+    <Rating bind:submited />
   {:else}
-    <ThankYou {rate} />
+    <ThankYou bind:submited />
   {/if}
 </div>
+
+<style>
+  :global(body) {
+    @apply bg-gray-900;
+  }
+</style>

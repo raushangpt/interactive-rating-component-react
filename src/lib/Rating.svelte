@@ -1,46 +1,46 @@
 <script>
+  import iconStar from '../assets/icon-star.svg';
+  export let submited;
   let active = null;
-  export let submit, rate;
 </script>
 
-<div
-  class="bg-dark-blue font-overpass max-w-xs select-none space-y-4 rounded-lg p-4 sm:max-w-sm sm:space-y-6 sm:p-8">
-  <span
-    class="bg-medium-grey text-light-grey grid h-12 w-12 place-items-center rounded-full">
-    <img src="./images/icon-star.svg" alt="" />
-  </span>
+<div class="w-80 space-y-6 rounded-lg bg-gray-800 p-6 font-sans sm:w-96 sm:space-y-8 sm:p-8">
+  <div class="text-light-grey grid h-10 w-10 place-items-center rounded-full bg-gray-700 sm:h-12 sm:w-12">
+    <img src={iconStar} alt="" />
+  </div>
 
-  <h1 class="text-2xl font-bold text-white">How did we do?</h1>
+  <h1 class="text-2xl font-bold sm:text-3xl">How did we do?</h1>
 
-  <p class="text-light-grey text-sm">
-    Please let us know how we did with your support request. All feedback is
-    appreciated to help us improve our offering!
+  <p class="text-xs text-gray-400 sm:text-sm">
+    Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!
   </p>
 
   <div class="flex items-center justify-between">
-    {#each [1, 2, 3, 4, 5] as number}
-      <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <span
-        class="bg-medium-grey text-light-grey hover:bg-orange grid h-12 w-12 cursor-pointer place-items-center rounded-full hover:text-white
-            {number === active ? 'active' : ''}"
+    {#each [1, 2, 3, 4, 5] as i}
+      <button
+        class="h-10 w-10 rounded-full bg-gray-700 text-sm text-gray-400 hover:bg-orange-500 hover:text-white sm:h-12 sm:w-12 sm:text-base
+        {i === active ? 'active' : null}"
         on:click={() => {
-          active = number;
-          rate = number;
+          active = i;
+          localStorage.setItem('rated', String(i));
         }}>
-        {number}
-      </span>
+        {i}
+      </button>
     {/each}
   </div>
 
   <button
-    class="bg-orange hover:text-orange w-full rounded-full py-2 uppercase text-white hover:bg-white"
-    on:click={() => (submit = true)}>
-    Submit
+    class="w-full select-none rounded-full bg-orange-500 py-2 text-sm hover:bg-white hover:text-orange-500 sm:text-base"
+    on:click={() => {
+      localStorage.setItem('submited', 'true');
+      submited = localStorage.getItem('submited') === 'true';
+    }}>
+    SUBMIT
   </button>
 </div>
 
 <style>
   .active {
-    @apply bg-light-grey text-white;
+    @apply bg-gray-500 text-white;
   }
 </style>
