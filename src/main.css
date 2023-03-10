@@ -2,8 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
+html {
     -webkit-tap-highlight-color: transparent;
-  }
+    height: -webkit-fill-available;
+}
+
+body {
+    height: -webkit-fill-available;
+}
+
+.wfa {
+    height: -webkit-fill-available;
+}
+
+.circle {
+    @apply bg-secondary text-secondary-content h-10 w-10 rounded-full md:h-12 md:w-12;
+}
+
+.ratingBtn {
+    @apply hover:bg-accent hover:text-accent-content;
+}
+
+.active {
+    @apply bg-secondary-focus;
 }
